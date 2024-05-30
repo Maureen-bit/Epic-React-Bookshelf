@@ -29,6 +29,10 @@
 [![Code of Conduct][coc-badge]][coc]
 <!-- prettier-ignore-end -->
 
+## Notes
+
+test commit
+
 ## Prerequisites
 
 - You'll want experience with React before going through this material. The
