@@ -1,9 +1,27 @@
-// 🐨 you'll need to import react and createRoot from react-dom up here
+import React, { useState }  from 'react';
+import { createRoot } from 'react-dom/client';
+import { Logo } from './components/logo';
+import LoginModal from 'components/modal';
 
-// 🐨 you'll also need to import the Logo component from './components/logo'
+const App = () => {
 
-// 🐨 create an App component here and render the logo, the title ("Bookshelf"), a login button, and a register button.
-// 🐨 for fun, you can add event handlers for both buttons to alert that the button was clicked
+    const [openModal, setOpenModal] = useState('none');
 
-// 🐨 use createRoot to render the <App /> to the root element
-// 💰 find the root element with: document.getElementById('root')
+    return (
+        <>  
+            <h1>Bookshelf</h1>
+            <Logo />
+            <div>
+                <button onClick={() => setOpenModal('login')}>Login</button>
+                <button onClick={() => setOpenModal('register')}>Register</button>
+            </div>
+            <LoginModal openModal={openModal} />
+        </>
+    )
+};
+
+export default App;
+
+const domNode = document.getElementById('root');
+const root = createRoot(domNode);
+root.render(<App />);
