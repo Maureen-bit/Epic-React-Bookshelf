@@ -6,103 +6,20 @@ function client(endpoint, customConfig = {}) {
   // 🐨 call window.fetch(fullURL, config) then handle the json response
   // 📜 https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch
   // 💰 here's how to get the full URL: `${process.env.REACT_APP_API_URL}/${endpoint}`
-}
-
-export {client}
-
-/*
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-💰 spoiler alert below...
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-const config = {
+  const config = {
     method: 'GET',
     ...customConfig,
   }
-*/
+
+  return fetch(`${process.env.REACT_APP_API_URL}/${endpoint}`, config)
+  .then(async resp => {
+    const data = await resp.json()
+    if (resp.ok) {
+      return data
+    } else {
+      return Promise.reject(data)
+    }
+  })
+}
+
+export { client }
